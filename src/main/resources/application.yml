@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    academy.wakanda: ${LOG_LEVEL:DEBUG}
+
+cloud:
+  aws:
+    stack.auto: false
+    region:
+      auto: false
+      use-default-aws-region-chain: true
+
+aws:
+  config:
+    region: ${AWS_SNS_REGION:us-east-1}
+    accesskey: ${AWS_SNS_ACCESS_KEY}
+    secretkey: ${AWS_SNS_SECRET_KEY}
+    message-topic: ${AWS_SNS_MESSAGE_TOPIC}
