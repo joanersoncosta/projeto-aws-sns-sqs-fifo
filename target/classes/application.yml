@@ -19,3 +19,4 @@ aws:
     accesskey: ${AWS_SNS_ACCESS_KEY}
     secretkey: ${AWS_SNS_SECRET_KEY}
     message-topic: ${AWS_SNS_MESSAGE_TOPIC}
+    queue: ${AWS_TESTE_QUEUE}

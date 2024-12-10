@@ -21,4 +21,5 @@ public class AwsConfigProperties {
     private String accesskey;
     private String secretkey;
     private String messageTopic;
+    private String queue;
 }

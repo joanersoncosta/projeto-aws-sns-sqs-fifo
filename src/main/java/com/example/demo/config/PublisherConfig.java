@@ -49,8 +49,8 @@ public class PublisherConfig {
                 .ifPresentOrElse(clientBuilder::withEndpointConfiguration, ()-> region.ifPresent(clientBuilder::withRegion));
     }
     
-    @Bean
-    public SnsClient snsClient() {
-        return SnsClient.create();
-    }
+//    @Bean
+//    public SnsClient snsClient() {
+//        return SnsClient.create();
+//    }
 }

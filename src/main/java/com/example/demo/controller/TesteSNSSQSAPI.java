@@ -29,6 +29,7 @@ public class TesteSNSSQSAPI {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void postPublicaMensagemMessage(@PathVariable(name = "msg") String mensagem) {
 		log.info("[start] TesteSNSSQSAPI - postPublicaMensagem");
+		log.info("[awsConfigProperties] {}", awsConfigProperties.toString());
 		enviaMensagem(mensagem);
 		log.debug("[finish] TesteSNSSQSAPI - postPublicaMensagem");
 	}
@@ -39,11 +40,18 @@ public class TesteSNSSQSAPI {
                 .message(mensagem)
                 .messageGroupId("test-message")
                 .messageDeduplicationId(UUID.randomUUID().toString()));
-		log.debug("[finish] TesteSNSSQSAPI - enviaMensagem");
+		log.info("[finish] TesteSNSSQSAPI - enviaMensagem");
 	}
 
-	@SqsListener("sqs-queue-ff.fifo")
+	@SqsListener("${aws.config.queue}")
 	public void listenerMensagem(@Payload String mensagem) {
-		log.info("FIFO mensagem recebida: " + mensagem);
+		log.info("AWS mensagem recebida: " + mensagem);
 	}
+	
+//	@SqsListener("${aws.config.queue}")
+//	public void listenerMensagemPadrao(@Payload String mensagem) {
+//		log.info("[start] TesteSNSSQSAPI - listenerMensagemPadrao");
+//		log.info("FIFO mensagem recebida: " + mensagem);
+//		log.info("[finish] TesteSNSSQSAPI - listenerMensagemPadrao");
+//	}
 }
