@@ -5,7 +5,11 @@ server:
 logging:
   level:
     academy.wakanda: ${LOG_LEVEL:DEBUG}
-
+    
+spring:
+  main:
+    allow-bean-definition-overriding: true
+    
 cloud:
   aws:
     stack.auto: false
@@ -16,7 +20,9 @@ cloud:
 aws:
   config:
     region: ${AWS_SNS_REGION:us-east-1}
-    accesskey: ${AWS_SNS_ACCESS_KEY}
-    secretkey: ${AWS_SNS_SECRET_KEY}
-    message-topic: ${AWS_SNS_MESSAGE_TOPIC}
-    queue: ${AWS_TESTE_QUEUE}
+    accesskey: ${AWS_SNS_ACCESS_KEY:test}
+    secretkey: ${AWS_SNS_SECRET_KEY:test}
+    message-topic: ${AWS_SNS_MESSAGE_TOPIC:arn:aws:sns:us-east-1:000000000000:test-topic.fifo}
+    endereco: http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-queue.fifo
+  queue: 
+    teste: ${AWS_TESTE_QUEUE:test-queue.fifo}
